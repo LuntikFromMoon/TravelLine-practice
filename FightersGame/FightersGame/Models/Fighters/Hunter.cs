@@ -6,9 +6,9 @@ namespace Fighters.Models.Fighters
     {
         public override string ClassName { get; } = "Охотник";
 
+        protected override double ClassDamagePoints => 2;
         public Hunter( string name, IRace race ) : base( name, race )
         {
-            ClassDamagePoints = 2;
         }
     }
 }

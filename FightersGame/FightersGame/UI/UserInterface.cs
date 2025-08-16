@@ -1,5 +1,4 @@
-﻿using Fighters.GameChoices;
-using Fighters.GameManagers;
+﻿using Fighters.GameManagers;
 using Fighters.Models.Armors;
 using Fighters.Models.Fighters;
 using Fighters.Models.Races;
@@ -64,23 +63,7 @@ namespace Fighters.UI
                 {
                     try
                     {
-                        switch ( rType )
-                        {
-                            case RaceType.Human:
-
-                                return new Human();
-
-                            case RaceType.Elf:
-
-                                return new Elf();
-
-                            case RaceType.Dwarf:
-
-                                return new Dwarf();
-
-                            default:
-                                throw new Exception( $"Невалидный ввод. Вы ввели: {rType}" );
-                        }
+                        return RaceFactory.Create( rType );
                     }
                     catch ( Exception e )
                     {
@@ -108,23 +91,7 @@ namespace Fighters.UI
                 {
                     try
                     {
-                        switch ( fType )
-                        {
-                            case FighterType.Gladiator:
-
-                                return new Gladiator( name, race );
-
-                            case FighterType.Hunter:
-
-                                return new Hunter( name, race );
-
-                            case FighterType.Knight:
-
-                                return new Knight( name, race );
-
-                            default:
-                                throw new Exception( $"Невалидный ввод. Вы ввели: {fType}" );
-                        }
+                        return FighterFactory.Create( fType, name, race );
                     }
                     catch ( Exception e )
                     {
@@ -152,31 +119,9 @@ namespace Fighters.UI
                 {
                     try
                     {
-                        switch ( wType )
-                        {
-                            case WeaponType.Fists:
-                                fighter.SetWeapon( new Fists() );
+                        fighter.SetWeapon( WeaponFactory.Create( wType ) );
 
-                                return;
-
-                            case WeaponType.Bow:
-                                fighter.SetWeapon( new Bow() );
-
-                                return;
-
-                            case WeaponType.Sword:
-                                fighter.SetWeapon( new Sword() );
-
-                                return;
-
-                            case WeaponType.LuckyHammer:
-                                fighter.SetWeapon( new LuckyHammer() );
-
-                                return;
-
-                            default:
-                                throw new Exception( $"Невалидный ввод. Вы ввели: {wType}" );
-                        }
+                        return;
                     }
                     catch ( Exception e )
                     {
@@ -204,26 +149,9 @@ namespace Fighters.UI
                 {
                     try
                     {
-                        switch ( aType )
-                        {
-                            case ArmorType.NoArmor:
-                                fighter.SetArmor( new NoArmor() );
+                        fighter.SetArmor( ArmorFactory.Create( aType ) );
 
-                                return;
-
-                            case ArmorType.LeatherTunic:
-                                fighter.SetArmor( new LeatherTunic() );
-
-                                return;
-
-                            case ArmorType.IronChestplate:
-                                fighter.SetArmor( new IronChestplate() );
-
-                                return;
-
-                            default:
-                                throw new Exception( $"Невалидный ввод. Вы ввели: {aType}" );
-                        }
+                        return;
                     }
                     catch ( Exception e )
                     {

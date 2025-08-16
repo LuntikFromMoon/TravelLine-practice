@@ -12,9 +12,9 @@ namespace Fighters.Models.Fighters
         private double ArmorPoints = 0;
         private readonly Random _random = new Random();
 
-        protected double ClassArmorPoints = 0;
-        protected double ClassDamagePoints = 0;
-        protected double ClassHealthPoints = 0;
+        protected virtual double ClassHealthPoints => 0;
+        protected virtual double ClassDamagePoints => 0;
+        protected virtual double ClassArmorPoints => 0;
 
         private double _currentHealth;
 

@@ -1,4 +1,4 @@
-﻿namespace Fighters.GameChoices
+﻿namespace Fighters.Models.Weapons
 {
     internal enum WeaponType
     {

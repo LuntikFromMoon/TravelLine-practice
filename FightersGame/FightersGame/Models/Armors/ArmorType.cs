@@ -1,4 +1,4 @@
-﻿namespace Fighters.GameChoices
+﻿namespace Fighters.Models.Armors
 {
     internal enum ArmorType
     {
