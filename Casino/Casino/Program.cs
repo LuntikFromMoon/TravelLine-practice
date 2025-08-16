@@ -9,12 +9,12 @@ const string GameName = "" +
     " ####  #    # #####   #  #    #  ####" + "\n";
 
 PrintGameName( GameName );
-OperationsHandler operationsHandler = new OperationsHandler( InitializeTheBalance() );
+OperationsHandler operationsHandler = new OperationsHandler( InitializeBalance() );
 Operation? operation = Operation.Initial;
 
 while ( ( operation != Operation.Exit ) && ( operationsHandler.Balance > 0 ) )
 {
-    PrintTheMenu();
+    PrintMenu();
 
     operation = ReadOperation();
     operationsHandler.Handle( operation );
@@ -32,7 +32,7 @@ static void PrintGameName( string gameName )
     Console.WriteLine( gameName );
 }
 
-static int InitializeTheBalance()
+static int InitializeBalance()
 {
     Console.WriteLine( "Please enter your balance to start the game." );
     string? balanceStr = "";
@@ -48,7 +48,7 @@ static int InitializeTheBalance()
     return balance;
 }
 
-static void PrintTheMenu()
+static void PrintMenu()
 {
     Console.WriteLine( "\nMenu\nTo play - 1\nTo check the balance - 2\nTo exit - 3\nWhat do you want to do now?" );
 }

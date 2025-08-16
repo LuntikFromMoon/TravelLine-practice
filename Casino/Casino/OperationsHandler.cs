@@ -8,8 +8,6 @@
 
         private Randomizer _randomizer;
 
-        private int _bet = 0;
-
         public OperationsHandler( int balance )
         {
             Balance = balance;
@@ -25,7 +23,7 @@
                     case Operation.Initial:
                         return;
                     case Operation.Play:
-                        Balance = CountResult();
+                        Balance = CalculateResult( Balance );
                         break;
                     case Operation.CheckBalance:
                         Console.WriteLine( $"Your balance is {Balance}" );
@@ -44,31 +42,31 @@
             }
         }
 
-        private int CountResult()
+        private int CalculateResult( int initialBalance )
         {
-            _bet = MakeTheBet();
-            Balance -= _bet;
+            int bet = ReadBetAmount();
+            int newBalance = initialBalance - bet;
             int randomNumb = _randomizer.GenerateRandomNumber( 1, 20 );
             if ( randomNumb >= 18 )
             {
-                Balance += _bet * ( 1 + _multiplier * randomNumb % 17 );
-                Console.WriteLine( $"Congrats! You won. Your balance now is {Balance}" );
+                newBalance += bet * ( 1 + _multiplier * randomNumb % 17 );
+                Console.WriteLine( $"Congrats! You won. Your balance now is {newBalance}" );
 
-                return Balance;
+                return newBalance;
             }
             else
             {
-                Console.WriteLine( $"Sorry, you lose. Better luck next time. Your balance now is {Balance}" );
+                Console.WriteLine( $"Sorry, you lose. Better luck next time. Your balance now is {newBalance}" );
 
-                return Balance;
+                return newBalance;
             }
         }
 
-        private int MakeTheBet()
+        private int ReadBetAmount()
         {
-            Console.WriteLine( "Please enter the bet." );
             while ( true )
             {
+                Console.WriteLine( "Please enter the bet." );
                 string? betStr = Console.ReadLine();
                 if ( InputValidator.ValidateInt( betStr, out int bet ) )
                 {
