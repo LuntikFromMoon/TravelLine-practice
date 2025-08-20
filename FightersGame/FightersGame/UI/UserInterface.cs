@@ -56,26 +56,19 @@ namespace Fighters.UI
             while ( true )
             {
                 Console.WriteLine( "Выберите расу бойца:" );
-                Console.WriteLine( "1-Человек, \n2-Эльф, \n3-Дварф.\nВведите цифру..." );
+                RaceFactory.WriteRaceChoice();
                 string? operationStr = Console.ReadLine();
                 bool isParsed = Enum.TryParse( operationStr, out RaceType rType );
                 if ( isParsed )
                 {
-                    try
+                    IRace? race = RaceFactory.Create( rType );
+                    if ( race != null )
                     {
-                        return RaceFactory.Create( rType );
+                        return race;
                     }
-                    catch ( Exception e )
-                    {
-                        Console.WriteLine( "Ваш выбор не поддерживается программой." );
-                    }
-                }
-                else
-                {
-                    Console.WriteLine( "Ваш выбор не поддерживается программой." );
                 }
 
-                Console.WriteLine( "Попробуйте ввести одну цифру из предложенных ещё раз." );
+                Console.WriteLine( "Ваш выбор не поддерживается программой. Попробуйте ввести одну цифру из предложенных ещё раз." );
             }
         }
 
@@ -84,26 +77,19 @@ namespace Fighters.UI
             while ( true )
             {
                 Console.WriteLine( "Выберите класс бойца:" );
-                Console.WriteLine( "1-Гладиатор (больше хп), \n2-Охотник (больше дамаг), \n3-Рыцарь (больше защита).\nВведите цифру..." );
+                FighterFactory.WriteFightersChoice();
                 string? operationStr = Console.ReadLine();
                 bool isParsed = Enum.TryParse( operationStr, out FighterType fType );
                 if ( isParsed )
                 {
-                    try
+                    IFighter? fighter = FighterFactory.Create( fType, name, race );
+                    if ( fighter != null )
                     {
-                        return FighterFactory.Create( fType, name, race );
+                        return fighter;
                     }
-                    catch ( Exception e )
-                    {
-                        Console.WriteLine( "Ваш выбор не поддерживается программой." );
-                    }
-                }
-                else
-                {
-                    Console.WriteLine( "Ваш выбор не поддерживается программой." );
                 }
 
-                Console.WriteLine( "Попробуйте ввести одну цифру из предложенных ещё раз." );
+                Console.WriteLine( "Ваш выбор не поддерживается программой. Попробуйте ввести одну цифру из предложенных ещё раз." );
             }
         }
 
@@ -112,28 +98,21 @@ namespace Fighters.UI
             while ( true )
             {
                 Console.WriteLine( "Выберите оружие:" );
-                Console.WriteLine( "1-Кулаки, \n2-Лук, \n3-Меч, \n4-Счастливый молот. \nВведите цифру..." );
+                WeaponFactory.WriteWeaponChoice();
                 string? operationStr = Console.ReadLine();
                 bool isParsed = Enum.TryParse( operationStr, out WeaponType wType );
                 if ( isParsed )
                 {
-                    try
+                    IWeapon? weapon = WeaponFactory.Create( wType );
+                    if ( weapon != null )
                     {
-                        fighter.SetWeapon( WeaponFactory.Create( wType ) );
+                        fighter.SetWeapon( weapon );
 
                         return;
                     }
-                    catch ( Exception e )
-                    {
-                        Console.WriteLine( "Ваш выбор не поддерживается программой." );
-                    }
-                }
-                else
-                {
-                    Console.WriteLine( "Ваш выбор не поддерживается программой." );
                 }
 
-                Console.WriteLine( "Попробуйте ввести одну цифру из предложенных ещё раз." );
+                Console.WriteLine( "Ваш выбор не поддерживается программой. Попробуйте ввести одну цифру из предложенных ещё раз." );
             }
         }
 
@@ -142,28 +121,21 @@ namespace Fighters.UI
             while ( true )
             {
                 Console.WriteLine( "Выберите броню:" );
-                Console.WriteLine( "1-Без брони, \n2-Кожаная броня, \n3-Железные доспехи.\nВведите цифру..." );
+                ArmorFactory.WriteArmorChoice();
                 string? operationStr = Console.ReadLine();
                 bool isParsed = Enum.TryParse( operationStr, out ArmorType aType );
                 if ( isParsed )
                 {
-                    try
+                    IArmor? armor = ArmorFactory.Create( aType );
+                    if ( armor != null )
                     {
-                        fighter.SetArmor( ArmorFactory.Create( aType ) );
+                        fighter.SetArmor( armor );
 
                         return;
                     }
-                    catch ( Exception e )
-                    {
-                        Console.WriteLine( "Ваш выбор не поддерживается программой." );
-                    }
-                }
-                else
-                {
-                    Console.WriteLine( "Ваш выбор не поддерживается программой." );
                 }
 
-                Console.WriteLine( "Попробуйте ввести одну цифру из предложенных ещё раз." );
+                Console.WriteLine( "Ваш выбор не поддерживается программой. Попробуйте ввести одну цифру из предложенных ещё раз." );
             }
         }
     }
